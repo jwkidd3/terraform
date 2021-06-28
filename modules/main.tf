@@ -3,10 +3,12 @@ module "frontend"{
   cmds=["touch front1.dat","touch front2.dat"]
 }
 module "backend"{
-  cmds=["touch back1.dat","touch back2.dat"]
+  cmds=["sudo apt update","sudo apt install nginx -y"]
   total_instances=2
   source = "./aws_instances"
-  region="sa-east-1"
+  providers = {
+    aws = aws.saeast1
+  }
 }
 
 

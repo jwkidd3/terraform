@@ -30,7 +30,6 @@ resource "aws_instance" "instance"{
   ami   = data.aws_ami.ubuntu.id
   key_name = aws_key_pair.bubba.key_name
   instance_type = "t2.micro"
-  
   security_groups = [aws_security_group.nginx.name]
   availability_zone=data.aws_availability_zones.available.names[count.index]
   provisioner "remote-exec" {

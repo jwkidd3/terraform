@@ -7,6 +7,4 @@ variable "cmds"{
   type    = list
   default = ["touch test.dat"]
 }
-variable "region"{
-  default = "us-east-1"
-}
+

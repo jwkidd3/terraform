@@ -9,3 +9,10 @@ terraform {
 provider "aws" {
   region = var.region
 }
+
+provider "aws" {
+  alias = "saeast1"
+  region = "sa-east-1"
+}
+
+
