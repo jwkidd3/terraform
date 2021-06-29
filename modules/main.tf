@@ -4,7 +4,7 @@ module "frontend"{
 }
 module "backend"{
   cmds=["sudo apt update","sudo apt install nginx -y"]
-  total_instances=2
+  total_instances=0
   source = "./aws_instances"
   providers = {
     aws = aws.saeast1
