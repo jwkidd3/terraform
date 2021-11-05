@@ -1,0 +1,75 @@
+resource "octopusdeploy_deployment_process" "octo1" {
+    id         = "deploymentprocess-Projects-25"
+    project_id = "Projects-25"
+    space_id   = "Spaces-1"
+    version    = 1
+
+    step {
+        condition           = "Success"
+        id                  = "9f25889d-eefe-49d2-a4f3-54238f35aeb2"
+        name                = "Apply a Terraform template"
+        package_requirement = "LetOctopusDecide"
+        properties          = {}
+        start_trigger       = "StartAfterPrevious"
+        target_roles        = []
+
+        apply_terraform_template_action {
+            can_be_used_for_project_versioning = true
+            channels                           = []
+            condition                          = "Success"
+            environments                       = []
+            excluded_environments              = []
+            features                           = []
+            id                                 = "916d4730-c734-4653-aecf-7363939fd752"
+            is_disabled                        = false
+            is_required                        = false
+            name                               = "Apply a Terraform template"
+            properties                         = {
+                "Octopus.Action.Aws.AssumeRole"                         = "False"
+                "Octopus.Action.Aws.Region"                             = "us-east-1"
+                "Octopus.Action.AwsAccount.UseInstanceRole"             = "False"
+                "Octopus.Action.AwsAccount.Variable"                    = "MyAWS"
+                "Octopus.Action.GoogleCloud.ImpersonateServiceAccount"  = "False"
+                "Octopus.Action.GoogleCloud.UseVMServiceAccount"        = "True"
+                "Octopus.Action.Package.DownloadOnTentacle"             = "False"
+                "Octopus.Action.Package.FeedId"                         = "feeds-builtin"
+                "Octopus.Action.Package.PackageId"                      = "deploy.zip"
+                "Octopus.Action.Script.ScriptSource"                    = "Package"
+                "Octopus.Action.Terraform.AllowPluginDownloads"         = "True"
+                "Octopus.Action.Terraform.AzureAccount"                 = "False"
+                "Octopus.Action.Terraform.GoogleCloudAccount"           = "False"
+                "Octopus.Action.Terraform.ManagedAccount"               = "AWS"
+                "Octopus.Action.Terraform.PlanJsonOutput"               = "False"
+                "Octopus.Action.Terraform.RunAutomaticFileSubstitution" = "True"
+            }
+            run_on_server                      = false
+            tenant_tags                        = []
+
+            advanced_options {
+                allow_additional_plugin_downloads = true
+            }
+
+            aws_account {
+                region            = "us-east-1"
+                use_instance_role = false
+                variable          = "MyAWS"
+            }
+
+            container {}
+
+            primary_package {
+                acquisition_location = "Server"
+                feed_id              = "feeds-builtin"
+                id                   = "0b3b2717-8a62-49e8-96fc-bd58551456bc"
+                package_id           = "deploy.zip"
+                properties           = {
+                    "SelectionMode" = "immediate"
+                }
+            }
+
+            template {
+                run_automatic_file_substitution = true
+            }
+        }
+    }
+}
